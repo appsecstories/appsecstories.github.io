@@ -6,7 +6,7 @@ permalink: /about/
 
 # About Me
 
-I'm an experienced **Application Security Engineer** with a passion for building secure applications and educating developers about cybersecurity best practices. With years of experience in the field, I specialize in identifying and mitigating security vulnerabilities throughout the Software Development Life Cycle (SDLC).
+I'm Sunil Joshi, an experienced **Application Security Engineer** with a passion for building secure applications and educating developers about cybersecurity best practices. With years of experience in the field, I specialize in identifying and mitigating security vulnerabilities throughout the Software Development Life Cycle (SDLC).
 
 ## My Expertise
 

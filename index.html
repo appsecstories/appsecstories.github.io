@@ -26,8 +26,15 @@ title: Home
             {{ post.title | escape }}
           </a>
         </h3>
-        {%- if site.show_excerpts -%}
-          {{ post.excerpt }}
+        {%- if post.excerpt -%}
+          <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+        {%- endif -%}
+        {%- if post.categories.size > 0 -%}
+          <div class="post-categories">
+            {%- for category in post.categories -%}
+              <span class="post-category-tag">{{ category | replace: '-', ' ' | capitalize }}</span>
+            {%- endfor -%}
+          </div>
         {%- endif -%}
         {%- if post.tags.size > 0 -%}
           <div class="post-tags">

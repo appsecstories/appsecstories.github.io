@@ -1,18 +1,18 @@
-<!-- Sidebar Component -->
+<!-- Sidebar with Categories, Recent Posts, Ads, etc. -->
 <div class="sidebar-content">
   
-  <!-- Blog Categories -->
+  <!-- Blog Categories Widget -->
   <section class="sidebar-widget categories-widget">
     <h3 class="widget-title">📚 Blog Categories</h3>
     <div class="categories-list">
       {%- for category in site.blog_categories -%}
         <div class="category-item">
-          <a href="{{ '/category/' | append: category.slug | relative_url }}" class="category-link">
+          <a href="{{ '/categories/' | append: category.slug | append: '/' | relative_url }}" class="category-link">
             <span class="category-icon">{{ category.icon }}</span>
             <div class="category-info">
               <span class="category-name">{{ category.name }}</span>
               <span class="category-count">
-                {%- assign category_posts = site.posts | where: "categories", category.slug -%}
+                {%- assign category_posts = site.categories[category.slug] -%}
                 ({{ category_posts.size }} posts)
               </span>
               <p class="category-description">{{ category.description }}</p>
@@ -23,7 +23,7 @@
     </div>
   </section>
 
-  <!-- Recent Posts -->
+  <!-- Recent Posts Widget -->
   <section class="sidebar-widget recent-posts-widget">
     <h3 class="widget-title">📝 Recent Posts</h3>
     <div class="recent-posts-list">
@@ -47,15 +47,15 @@
     </div>
   </section>
 
-  <!-- Popular Tags -->
+  <!-- Popular Tags Widget -->
   <section class="sidebar-widget tags-widget">
     <h3 class="widget-title">🏷️ Popular Tags</h3>
     <div class="tags-cloud">
       {%- assign tags = site.posts | map: 'tags' | join: ',' | split: ',' | uniq | sort -%}
       {%- for tag in tags limit: 15 -%}
         {%- if tag != empty -%}
-          {%- assign tag_posts = site.posts | where: "tags", tag -%}
-          <a href="{{ '/tag/' | append: tag | slugify | relative_url }}" 
+          {%- assign tag_posts = site.posts | where_exp: "post", "post.tags contains tag" -%}
+          <a href="{{ '/tags/' | append: tag | slugify | relative_url }}" 
              class="tag-link" 
              title="{{ tag_posts.size }} posts">
             {{ tag | strip }}
@@ -66,13 +66,13 @@
     </div>
   </section>
 
-  <!-- Advertisement Space -->
+  <!-- Advertisement Widget -->
   <section class="sidebar-widget ad-widget">
     <h3 class="widget-title">📢 Advertisement</h3>
     <div class="ad-container">
       
-      <!-- Google AdSense (replace with your ad code) -->
-      {%- if site.google_adsense.client_id -%}
+      <!-- Google AdSense Integration -->
+      {%- if site.google_adsense.client_id and site.google_adsense.client_id != "ca-pub-1234567890123456" -%}
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.google_adsense.client_id }}"
                 crossorigin="anonymous"></script>
         <!-- Sidebar Ad -->
@@ -86,13 +86,15 @@
              (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
       {%- else -%}
-        <!-- Placeholder Ad (remove when you have real ads) -->
+        <!-- Ad Placeholder (replace when you get AdSense approval) -->
         <div class="ad-placeholder">
           <div class="ad-placeholder-content">
             <h4>Advertisement</h4>
-            <p>Your ad could be here</p>
+            <p>Your ad could be here!</p>
             <p class="ad-size">300 x 250</p>
-            <button class="ad-cta">Learn More</button>
+            <p class="ad-info">
+              Replace this placeholder with your Google AdSense code in _config.yml
+            </p>
           </div>
         </div>
       {%- endif -%}
@@ -100,13 +102,13 @@
     </div>
   </section>
 
-  <!-- Newsletter Signup -->
+  <!-- Newsletter Signup Widget -->
   <section class="sidebar-widget newsletter-widget">
     <h3 class="widget-title">📬 Stay Updated</h3>
     <div class="newsletter-content">
       <p>Get the latest security insights and tutorials delivered to your inbox.</p>
       
-      <!-- Email subscription form (you can replace with your preferred service) -->
+      <!-- Email subscription form (replace with your service) -->
       <form class="newsletter-form" action="#" method="post">
         <div class="form-group">
           <input type="email" 
@@ -123,7 +125,7 @@
     </div>
   </section>
 
-  <!-- About Author (Short) -->
+  <!-- About Author Widget -->
   <section class="sidebar-widget author-widget">
     <h3 class="widget-title">👨‍💻 About Author</h3>
     <div class="author-info">
@@ -140,7 +142,7 @@
     </div>
   </section>
 
-  <!-- Archive -->
+  <!-- Archive Widget -->
   <section class="sidebar-widget archive-widget">
     <h3 class="widget-title">📅 Archive</h3>
     <div class="archive-list">

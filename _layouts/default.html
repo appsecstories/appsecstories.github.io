@@ -8,8 +8,20 @@
   {%- include header.html -%}
 
   <main class="page-content" aria-label="Content">
-    <div class="wrapper">
-      {{ content }}
+    <div class="main-container">
+      
+      <!-- Main Content Area -->
+      <div class="content-wrapper">
+        <div class="main-content">
+          {{ content }}
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        {%- include sidebar.html -%}
+      </aside>
+
     </div>
   </main>
 

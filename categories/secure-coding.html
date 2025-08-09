@@ -1,0 +1,83 @@
+---
+layout: page
+title: "Secure Coding"
+permalink: /categories/secure-coding/
+---
+
+# 🔐 Secure Coding
+
+Master the art of writing secure code with our comprehensive guides on secure development practices, vulnerability prevention, and implementing security controls in your applications.
+
+## What You'll Learn
+
+- **Input Validation**: Proper validation and sanitization techniques
+- **Authentication & Authorization**: Secure user management systems
+- **SQL Injection Prevention**: Database security best practices
+- **XSS Prevention**: Cross-site scripting mitigation techniques  
+- **Session Management**: Secure session handling and cookies
+- **Error Handling**: Secure error management without information disclosure
+
+## Latest Posts
+
+<div class="posts-container">
+  {%- assign category_posts = site.categories.secure-coding -%}
+  {%- if category_posts.size > 0 -%}
+    {%- for post in category_posts -%}
+      <article class="blog-post-preview">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          </h2>
+          <div class="post-meta">
+            {{ post.date | date: "%B %-d, %Y" }}
+            {%- if post.tags.size > 0 -%}
+              • Tags: 
+              {%- for tag in post.tags -%}
+                <span class="post-tag">{{ tag }}</span>
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
+        </header>
+        <div class="post-excerpt">
+          {{ post.excerpt | strip_html | truncatewords: 30 }}
+        </div>
+        <footer class="post-footer">
+          <a href="{{ post.url | relative_url }}" class="read-more">Read Full Post →</a>
+        </footer>
+      </article>
+    {%- endfor -%}
+  {%- else -%}
+    <div class="no-posts">
+      <h2>No secure coding posts yet</h2>
+      <p>Check back soon for in-depth guides on secure development practices!</p>
+    </div>
+  {%- endif -%}
+</div>
+
+## Programming Languages Covered
+
+- **Python**: Django, Flask security best practices
+- **JavaScript**: Node.js, React, Vue.js security
+- **Java**: Spring Boot, enterprise security patterns
+- **C#**: .NET Core security implementation
+- **PHP**: Modern PHP security practices
+- **Go**: Secure Go development patterns
+
+## Security Frameworks & Standards
+
+- **OWASP Top 10**: Comprehensive vulnerability prevention
+- **SANS Top 25**: Most dangerous software errors
+- **CWE**: Common Weakness Enumeration
+- **NIST Guidelines**: Federal security standards
+- **ISO 27001**: Information security management
+
+## Development Tools
+
+- **Static Analysis**: SonarQube, Checkmarx, Veracode
+- **Dependency Scanning**: OWASP Dependency Check, Snyk
+- **IDE Extensions**: Security linters and plugins
+- **CI/CD Integration**: Automated security testing
+
+---
+
+*Building secure applications? [Contact me](/contact/) for code review services and secure development training!*

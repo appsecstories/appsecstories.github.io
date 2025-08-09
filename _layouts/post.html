@@ -10,22 +10,21 @@ layout: default
       <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
         {{ page.date | date: date_format }}
       </time>
-      {%- if page.modified_date -%}
-        ~ 
-        {%- assign mdate = page.modified_date | date_to_xmlschema -%}
-        <time class="dt-modified" datetime="{{ mdate }}" itemprop="dateModified">
-          {{ mdate | date: date_format }}
-        </time>
-      {%- endif -%}
       {%- if page.author -%}
-        • {% for author in page.author %}
-            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-              <span class="p-author h-card" itemprop="name">{{ author }}</span></span>
-              {%- if forloop.last == false %}, {% endif -%}
-          {% endfor %}
+        • <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">{{ page.author }}</span>
+          </span>
+      {%- endif -%}
+      {%- if page.categories.size > 0 -%}
+        • 
+        {%- for category in page.categories -%}
+          <span class="post-category">{{ category | replace: '-', ' ' | capitalize }}</span>
+          {%- unless forloop.last -%}, {%- endunless -%}
+        {%- endfor -%}
       {%- endif -%}
       {%- if page.tags.size > 0 -%}
-        • 
+        <br>
+        <span class="tags-label">Tags: </span>
         {%- for tag in page.tags -%}
           <span class="post-tag">{{ tag }}</span>
           {%- unless forloop.last -%}, {%- endunless -%}
@@ -38,13 +37,46 @@ layout: default
     {{ content }}
   </div>
 
-  {%- if site.disqus.shortname -%}
-    {%- include disqus_comments.html -%}
+  <!-- Related Posts -->
+  {%- if site.related_posts.size > 0 -%}
+    <section class="related-posts">
+      <h3>Related Posts</h3>
+      <div class="related-posts-grid">
+        {%- for post in site.related_posts limit: 3 -%}
+          <article class="related-post">
+            <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
+            <p class="related-post-meta">{{ post.date | date: "%b %-d, %Y" }}</p>
+            <p class="related-post-excerpt">{{ post.excerpt | strip_html | truncatewords: 15 }}</p>
+          </article>
+        {%- endfor -%}
+      </div>
+    </section>
   {%- endif -%}
+
+  <!-- Comments Section -->
+  {%- if page.comments != false -%}
+    {%- include comments.html -%}
+  {%- endif -%}
+
+  <!-- Navigation between posts -->
+  <nav class="post-navigation">
+    <div class="nav-previous">
+      {%- if page.previous.url -%}
+        <a href="{{ page.previous.url | relative_url }}" class="nav-link">
+          <span class="nav-label">← Previous</span>
+          <span class="nav-title">{{ page.previous.title }}</span>
+        </a>
+      {%- endif -%}
+    </div>
+    <div class="nav-next">
+      {%- if page.next.url -%}
+        <a href="{{ page.next.url | relative_url }}" class="nav-link">
+          <span class="nav-label">Next →</span>
+          <span class="nav-title">{{ page.next.title }}</span>
+        </a>
+      {%- endif -%}
+    </div>
+  </nav>
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
-
-{%- if page.comments != false and jekyll.environment == "production" -%}
-  {%- include disqus_comments.html -%}
-{%- endif -%}
