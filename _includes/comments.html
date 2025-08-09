@@ -1,0 +1,37 @@
+{%- if page.comments != false and site.disqus.shortname -%}
+  <section class="comments-section">
+    <h3 class="comments-title">💬 Comments</h3>
+    
+    <!-- Disqus Comments -->
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    
+      */
+      var disqus_config = function () {
+        this.page.url = "{{ page.url | absolute_url }}";
+        this.page.identifier = "{{ page.id }}";
+        this.page.title = "{{ page.title }}";
+      };
+      
+      (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://{{ site.disqus.shortname }}.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </section>
+{%- else -%}
+  <!-- Comments disabled or no Disqus shortname configured -->
+  <section class="comments-section comments-disabled">
+    <h3 class="comments-title">💬 Comments</h3>
+    <div class="comments-placeholder">
+      <p>Comments are currently disabled for this post.</p>
+      <p>Feel free to reach out via <a href="{{ '/contact/' | relative_url }}">email</a> or social media for any questions or feedback!</p>
+    </div>
+  </section>
+{%- endif -%}

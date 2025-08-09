@@ -1,0 +1,160 @@
+<!-- Sidebar Component -->
+<div class="sidebar-content">
+  
+  <!-- Blog Categories -->
+  <section class="sidebar-widget categories-widget">
+    <h3 class="widget-title">📚 Blog Categories</h3>
+    <div class="categories-list">
+      {%- for category in site.blog_categories -%}
+        <div class="category-item">
+          <a href="{{ '/category/' | append: category.slug | relative_url }}" class="category-link">
+            <span class="category-icon">{{ category.icon }}</span>
+            <div class="category-info">
+              <span class="category-name">{{ category.name }}</span>
+              <span class="category-count">
+                {%- assign category_posts = site.posts | where: "categories", category.slug -%}
+                ({{ category_posts.size }} posts)
+              </span>
+              <p class="category-description">{{ category.description }}</p>
+            </div>
+          </a>
+        </div>
+      {%- endfor -%}
+    </div>
+  </section>
+
+  <!-- Recent Posts -->
+  <section class="sidebar-widget recent-posts-widget">
+    <h3 class="widget-title">📝 Recent Posts</h3>
+    <div class="recent-posts-list">
+      {%- for post in site.posts limit: 5 -%}
+        <article class="recent-post-item">
+          <div class="recent-post-content">
+            <h4 class="recent-post-title">
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h4>
+            <p class="recent-post-meta">
+              <time datetime="{{ post.date | date_to_xmlschema }}">
+                {{ post.date | date: "%b %-d, %Y" }}
+              </time>
+              {%- if post.categories.size > 0 -%}
+                • {{ post.categories.first | replace: '-', ' ' | capitalize }}
+              {%- endif -%}
+            </p>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </section>
+
+  <!-- Popular Tags -->
+  <section class="sidebar-widget tags-widget">
+    <h3 class="widget-title">🏷️ Popular Tags</h3>
+    <div class="tags-cloud">
+      {%- assign tags = site.posts | map: 'tags' | join: ',' | split: ',' | uniq | sort -%}
+      {%- for tag in tags limit: 15 -%}
+        {%- if tag != empty -%}
+          {%- assign tag_posts = site.posts | where: "tags", tag -%}
+          <a href="{{ '/tag/' | append: tag | slugify | relative_url }}" 
+             class="tag-link" 
+             title="{{ tag_posts.size }} posts">
+            {{ tag | strip }}
+            <span class="tag-count">{{ tag_posts.size }}</span>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+
+  <!-- Advertisement Space -->
+  <section class="sidebar-widget ad-widget">
+    <h3 class="widget-title">📢 Advertisement</h3>
+    <div class="ad-container">
+      
+      <!-- Google AdSense (replace with your ad code) -->
+      {%- if site.google_adsense.client_id -%}
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.google_adsense.client_id }}"
+                crossorigin="anonymous"></script>
+        <!-- Sidebar Ad -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="{{ site.google_adsense.client_id }}"
+             data-ad-slot="{{ site.google_adsense.slot_id }}"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      {%- else -%}
+        <!-- Placeholder Ad (remove when you have real ads) -->
+        <div class="ad-placeholder">
+          <div class="ad-placeholder-content">
+            <h4>Advertisement</h4>
+            <p>Your ad could be here</p>
+            <p class="ad-size">300 x 250</p>
+            <button class="ad-cta">Learn More</button>
+          </div>
+        </div>
+      {%- endif -%}
+      
+    </div>
+  </section>
+
+  <!-- Newsletter Signup -->
+  <section class="sidebar-widget newsletter-widget">
+    <h3 class="widget-title">📬 Stay Updated</h3>
+    <div class="newsletter-content">
+      <p>Get the latest security insights and tutorials delivered to your inbox.</p>
+      
+      <!-- Email subscription form (you can replace with your preferred service) -->
+      <form class="newsletter-form" action="#" method="post">
+        <div class="form-group">
+          <input type="email" 
+                 class="newsletter-input" 
+                 placeholder="Enter your email" 
+                 required 
+                 aria-label="Email address">
+          <button type="submit" class="newsletter-button">Subscribe</button>
+        </div>
+        <p class="newsletter-disclaimer">
+          <small>No spam, unsubscribe anytime. Privacy policy applies.</small>
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- About Author (Short) -->
+  <section class="sidebar-widget author-widget">
+    <h3 class="widget-title">👨‍💻 About Author</h3>
+    <div class="author-info">
+      {%- if site.author.avatar -%}
+        <img src="{{ site.author.avatar | relative_url }}" 
+             alt="{{ site.author.name }}" 
+             class="author-avatar">
+      {%- endif -%}
+      <div class="author-details">
+        <h4 class="author-name">{{ site.author.name }}</h4>
+        <p class="author-bio">{{ site.author.bio | truncatewords: 20 }}</p>
+        <a href="{{ '/about/' | relative_url }}" class="author-link">Learn more →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Archive -->
+  <section class="sidebar-widget archive-widget">
+    <h3 class="widget-title">📅 Archive</h3>
+    <div class="archive-list">
+      {%- assign posts_by_month = site.posts | group_by_exp: 'post', 'post.date | date: "%Y-%m"' -%}
+      {%- for month in posts_by_month limit: 12 -%}
+        {%- assign month_name = month.name | date: "%B %Y" -%}
+        <div class="archive-item">
+          <a href="{{ '/archive/' | append: month.name | relative_url }}" class="archive-link">
+            <span class="archive-month">{{ month_name }}</span>
+            <span class="archive-count">({{ month.items.size }})</span>
+          </a>
+        </div>
+      {%- endfor -%}
+    </div>
+  </section>
+
+</div>

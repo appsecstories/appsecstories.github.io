@@ -1,0 +1,121 @@
+---
+# Site settings
+title: AppSec Engineer Blog
+email: your-email@example.com
+description: >-
+  Professional blog about application security, secure coding practices, 
+  vulnerability assessment, and cybersecurity insights from an experienced 
+  Application Security Engineer.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://yourusername.github.io" # the base hostname & protocol for your site
+twitter_username: your_twitter
+github_username: your_github
+linkedin_username: your_linkedin
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-paginate
+
+# Pagination
+paginate: 5
+paginate_path: "/blog/page:num/"
+
+# Comments - Disqus
+disqus:
+  shortname: your-disqus-shortname  # Replace with your Disqus shortname
+
+# Google AdSense (optional)
+google_adsense:
+  client_id: "ca-pub-1234567890123456"  # Replace with your AdSense client ID
+  slot_id: "1234567890"                 # Replace with your ad slot ID
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /:categories/:year/:month/:day/:title/
+
+# Categories for sidebar
+blog_categories:
+  - name: "Penetration Testing"
+    slug: "pentest"
+    icon: "🔍"
+    description: "Ethical hacking and penetration testing methodologies"
+  - name: "Secure Coding"
+    slug: "secure-coding" 
+    icon: "🔐"
+    description: "Best practices for writing secure code"
+  - name: "AWS Security"
+    slug: "aws-security"
+    icon: "☁️"
+    description: "Cloud security and AWS-specific security measures"
+  - name: "Threat Modeling"
+    slug: "threat-modeling"
+    icon: "🎯"
+    description: "Systematic approach to identifying security threats"
+  - name: "Web Security"
+    slug: "web-security"
+    icon: "🌐"
+    description: "Web application security vulnerabilities and fixes"
+  - name: "DevSecOps"
+    slug: "devsecops"
+    icon: "⚙️"
+    description: "Integrating security into DevOps workflows"
+
+# Kramdown settings
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+# SEO settings
+author:
+  name: Application Security Engineer
+  bio: Experienced Application Security Engineer specializing in secure code review, vulnerability assessment, and implementing security best practices in the SDLC.
+  avatar: /assets/images/avatar.jpg
+  location: "Your Location"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/yourusername"
+    - label: "LinkedIn"  
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://linkedin.com/in/yourprofile"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/yourhandle"
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Application Security Engineer"
+      show_date: true
+      comments: true
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
