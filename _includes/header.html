@@ -1,4 +1,5 @@
 <header class="site-header" role="banner">
+<<<<<<< HEAD
 
   <div class="wrapper">
     <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
@@ -14,6 +15,26 @@
       </label>
 
       <div class="trigger">
+=======
+  <div class="wrapper header-inner">
+    <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <!-- Accessible hamburger toggle -->
+      <input type="checkbox" id="nav-trigger" class="nav-trigger" aria-label="Toggle navigation" />
+      <label for="nav-trigger" class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+        <span class="menu-icon" aria-hidden="true">
+          <!-- Simple icon (3 bars) -->
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </span>
+        <span class="sr-only">Menu</span>
+      </label>
+
+      <!-- Link container -->
+      <div id="primary-menu" class="trigger">
+>>>>>>> parent of 2fca0d0 (fix mobile view)
         <a class="page-link" href="{{ "/" | relative_url }}">Home</a>
         <a class="page-link" href="{{ "/about/" | relative_url }}">About</a>
         <a class="page-link" href="{{ "/blog/" | relative_url }}">Blog</a>
