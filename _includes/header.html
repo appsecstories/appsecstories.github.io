@@ -4,30 +4,25 @@
       <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
 
       <nav class="site-nav" aria-label="Primary">
-        <!-- Hamburger checkbox (hidden) -->
-        <input type="checkbox" id="nav-trigger" class="nav-trigger" aria-label="Toggle navigation" />
-        
-        <!-- Hamburger button -->
-        <label for="nav-trigger" class="menu-toggle" aria-controls="primary-menu">
-          <span class="menu-icon" aria-hidden="true">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger" class="menu-toggle">
+          <span class="menu-icon">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
           </span>
           <span class="sr-only">Menu</span>
         </label>
-
-        <!-- Navigation links (hidden on mobile by default) -->
-        <div id="primary-menu" class="trigger">
+        
+        <div class="trigger">
           <a class="page-link" href="{{ "/" | relative_url }}">Home</a>
           <a class="page-link" href="{{ "/about/" | relative_url }}">About</a>
           <a class="page-link" href="{{ "/blog/" | relative_url }}">Blog</a>
           <a class="page-link" href="{{ "/contact/" | relative_url }}">Contact</a>
         </div>
 
-        <!-- Theme toggle -->
         <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle color theme">
-          <span class="theme-icon" aria-hidden="true">🌞</span>
+          <span class="theme-icon">🌞</span>
         </button>
       </nav>
     </div>
