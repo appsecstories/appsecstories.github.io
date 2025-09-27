@@ -8,8 +8,7 @@ title: Home
   <section class="hero-section">
     <h1>Welcome to AppSec Engineer Blog</h1>
     <p class="hero-description">
-      Professional insights on application security, secure coding practices, vulnerability assessment, 
-      and implementing security best practices in the Software Development Life Cycle (SDLC).
+      Professional insights on application security and implementing security best practices in the Software Development Life Cycle (SDLC).
     </p>
   </section>
 
@@ -29,7 +28,8 @@ title: Home
         {%- if post.excerpt -%}
           <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
         {%- endif -%}
-        {%- if post.categories.size > 0 -%}
+        <!--
+		{%- if post.categories.size > 0 -%}
           <div class="post-categories">
             {%- for category in post.categories -%}
               <span class="post-category-tag">{{ category | replace: '-', ' ' | capitalize }}</span>
@@ -42,7 +42,7 @@ title: Home
               <span class="post-tag">{{ tag }}</span>
             {%- endfor -%}
           </div>
-        {%- endif -%}
+        {%- endif -%} -->
       </li>
       {%- endfor -%}
     </ul>

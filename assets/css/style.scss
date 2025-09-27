@@ -552,6 +552,7 @@ body {
 }
 
 /* Code styles */
+/*
 .post-content pre {
   background-color: var(--code-bg) !important;
   border: 1px solid var(--border-color);
@@ -560,6 +561,7 @@ body {
   overflow-x: auto;
   margin: 1.5rem 0;
 }
+*/
 
 .post-content code {
   background-color: var(--code-bg);
@@ -575,6 +577,7 @@ body {
   padding: 0;
   color: var(--text-color);
 }
+
 
 /* Tables */
 .post-content table {
