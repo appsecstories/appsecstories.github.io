@@ -1,0 +1,58 @@
+---
+layout: page
+title: "Penetration Testing"
+permalink: /categories/linux-security/
+---
+<!--
+# 🔍 Linux Security 
+
+Welcome to our linux security! Here you'll find comprehensive guides, methodologies, and practical tutorials covering all aspects of ethical hacking and security testing.
+
+## What You'll Learn
+
+- **Linux Users and Permissions**
+- **Linux Capabilities**
+- **Linux Security - Processes & Isolation**
+- **Linux Security - Networking & Network Security**
+
+## Latest Posts
+-->
+
+<h4> Latest Posts</h4>
+<div class="posts-container">
+  {%- assign category_posts = site.categories.linux-security -%}
+  {%- if category_posts.size > 0 -%}
+    {%- for post in category_posts -%}
+      <article class="blog-post-preview">
+        <header class="post-header">
+          <h2 class="post-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          </h2>
+          <div class="post-meta">
+            {{ post.date | date: "%B %-d, %Y" }}
+            {%- if post.tags.size > 0 -%}
+              • Tags: 
+              {%- for tag in post.tags -%}
+                <span class="post-tag">{{ tag }}</span>
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
+        </header>
+        <div class="post-excerpt">
+          {{ post.excerpt | strip_html | truncatewords: 30 }}
+        </div>
+        <footer class="post-footer">
+          <a href="{{ post.url | relative_url }}" class="read-more">Read Full Post →</a>
+        </footer>
+      </article>
+    {%- endfor -%}
+  {%- else -%}
+    <div class="no-posts">
+      <h2>No posts yet</h2>
+      <p>Check back soon for comprehensive guides on ethical hacking and security testing!</p>
+    </div>
+  {%- endif -%}
+</div>
+
+
+*Want to suggest a  testing topic? [Contact me](/contact/) and let me know what you'd like to see covered!*
