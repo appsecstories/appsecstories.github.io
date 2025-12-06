@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Linux Security - Users & Permissions"
-date: 2025-11-11 10:00:00 +0000
+date: 2025-11-10 10:00:00 +0000
 categories: [linux-security]
 tags: [linux-security]
 author: Application Security Engineer
@@ -124,11 +124,13 @@ Even if DAC permissions allow access (e.g., root reading a file), MAC provides a
 "GTFOBins" are legitimate Unix binaries that can be abused to bypass security restrictions.
 
 ### The "Hit List" (Common Exploit Vectors)
+
 | Category | Binaries | How it works |
 | :--- | :--- | :--- |
 | **Shell Spawners** | `vim`, `find`, `awk`, `less`, `man`, `env` | These tools can execute OS commands. If SUID, they spawn a root shell. |
 | **File Manipulators** | `cp`, `mv`, `tar`, `nano`, `zip` | Can read/write restricted files (like overwriting `/etc/passwd`). |
 | **Interpreters** | `python`, `perl`, `ruby`, `php` | Can import OS libraries to execute system shells. |
+
 
 ### ❓ Q&A: Default Permissions of GTFOBins
 **Q: What are the default permissions of these "GTFOBins" commands?**
@@ -147,3 +149,4 @@ Even if DAC permissions allow access (e.g., root reading a file), MAC provides a
 **1. Find UID 0 Users (Root equivalents):**
 ```bash
 grep ':0:' /etc/passwd
+```

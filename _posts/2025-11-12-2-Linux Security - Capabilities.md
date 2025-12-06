@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Linux Security - Capabilities"
-date: 2025-11-14 10:00:00 +0000
+date: 2025-11-12 10:00:00 +0000
 categories: [linux-security]
 tags: [linux-security]
 author: Application Security Engineer
