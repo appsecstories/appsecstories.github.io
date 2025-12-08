@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Linux Security - Processes & Isolation"
-date: 2025-11-18 10:00:00 +0000
+date: 2025-11-15 10:00:00 +0000
 categories: [linux-security]
 tags: [linux-security]
 author: Application Security Engineer
@@ -32,7 +32,6 @@ Linux exposes kernel data about processes as files in the `/proc` directory. Thi
 | `/proc/[pid]/exe` | Symlink to the actual binary file. | Recover deleted malware binaries (if still running). |
 | `/proc/[pid]/fd/` | List of open files/sockets. | See who the malware is talking to (network sockets). |
 
----
 
 ## 2. Process Isolation: Namespaces
 
@@ -42,6 +41,7 @@ If you run `top` on a host, you see everything. How do containers (like Docker) 
 Namespaces wrap a global system resource in an abstraction that makes it appear to the processes within the namespace that they have their own isolated instance of the global resource.
 
 ### The "Big 6" Namespaces
+
 | Namespace | Resource Isolated | Security Implication |
 | :--- | :--- | :--- |
 | **PID** | Process IDs | Process thinks it is PID 1. It cannot see or kill processes on the host. |
@@ -58,7 +58,6 @@ Namespaces wrap a global system resource in an abstraction that makes it appear 
 * **Container:** Shares the **Host Kernel**. It is just a Linux process with Namespaces (blindfolds) and Cgroups (handcuffs).
 * **Security Risk:** If a containerized process exploits a Kernel Vulnerability (e.g., Dirty COW), it compromises the **entire Host**.
 
----
 
 ## 3. Resource Control: Cgroups (Control Groups)
 While Namespaces control what a process can *see*, Cgroups control what a process can *use*.
@@ -71,8 +70,6 @@ Without Cgroups, a single compromised web server process could consume 100% of t
 2.  **Memory:** "You get 512MB RAM. If you exceed it -> OOM Kill."
 3.  **PIDs:** "You can only spawn 100 children" (Prevents Fork Bombs).
 4.  **BlkIO:** "You can only read disk at 10MB/s."
-
----
 
 ## 4. Container Security & "Privileged" Mode
 In Docker/Kubernetes reviews, checking for `--privileged` is step #1.
@@ -89,7 +86,6 @@ It essentially turns off all the safety mechanisms we just discussed.
 ### The "Docker Socket" Risk
 If you find `/var/run/docker.sock` mounted inside a container, that container has full control over the Docker daemon on the host. It can spin up a *new* container, mount the host's root directory to it, and edit `/etc/shadow`.
 
----
 
 ## 5. Audit & Hunting Commands
 

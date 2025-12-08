@@ -44,19 +44,18 @@ In Linux, every action is performed by a user. The kernel relies on **numerical 
 
 **Security Finding:** Always check `/etc/login.defs` (look for `UID_MIN`) to establish the baseline for the specific system you are auditing.
 
----
 
 ## 2. The Permission Model (DAC)
 Linux uses **Discretionary Access Control (DAC)**. Permissions are checked against the user's UID/GID.
 
 ### The "rwx" Triad
+
 | Permission | On a File | On a Directory | Octal Value |
 | :--- | :--- | :--- | :--- |
 | **Read (r)** | View contents | List contents (`ls`) | 4 |
 | **Write (w)** | Modify contents | Create/Delete files inside | 2 |
 | **Execute (x)** | Run as program | Enter directory (`cd`) | 1 |
 
----
 
 ## 3. Special Permissions (The Dangerous Bits)
 Standard permissions are often insufficient. Linux uses three special bits that are frequent targets for privilege escalation.
@@ -93,7 +92,6 @@ Used primarily on shared directories (like `/tmp`) to solve the "Shared Director
     * `drwxrwxr-T` (Upper `T`): Missing execute bit (Misconfiguration).
 * **Review Finding:** World-writable directories missing the sticky bit are a High Severity finding.
 
----
 
 ## 4. Authentication & Password Storage
 * **`/etc/shadow`:** Stores password hashes. Readable only by root.
@@ -102,7 +100,6 @@ Used primarily on shared directories (like `/tmp`) to solve the "Shared Director
     * Config: `/etc/ssh/sshd_config`
     * **Review Check:** Ensure `PermitRootLogin` is set to `no`.
 
----
 
 ## 5. Privilege Delegation (sudo)
 Users rarely log in as root directly; they use `sudo` to elevate privileges.
@@ -111,14 +108,12 @@ Users rarely log in as root directly; they use `sudo` to elevate privileges.
 * **Major Risk (NOPASSWD):** `bob ALL=(ALL) NOPASSWD: ALL` gives Bob root access without authentication.
 * **Major Risk (Binaries):** Allowing a user to run tools like `vim`, `less`, or `find` via sudo allows them to break out to a root shell.
 
----
 
 ## 6. Mandatory Access Control (MAC)
 Even if DAC permissions allow access (e.g., root reading a file), MAC provides an extra confinement layer.
 * **Tools:** SELinux (RedHat family), AppArmor (Debian/Ubuntu family).
 * **Concept:** Restricts what *processes* can do, even if running as root.
 
----
 
 ## 7. GTFOBins & Privilege Escalation
 "GTFOBins" are legitimate Unix binaries that can be abused to bypass security restrictions.
@@ -142,7 +137,6 @@ Even if DAC permissions allow access (e.g., root reading a file), MAC provides a
 | **Default** | `755` (`rwxr-xr-x`) | **None.** It is just a text editor/tool. |
 | **Misconfigured** | `4755` (`rwsr-xr-x`) | **Critical.** Privilege Escalation vector (SUID set). |
 
----
 
 ## 8. Audit Command Cheat Sheet (The "Hunter" List)
 

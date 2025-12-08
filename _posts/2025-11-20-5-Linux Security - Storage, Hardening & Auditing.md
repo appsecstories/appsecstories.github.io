@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Linux Security - Storage, Hardening & Auditing"
-date: 2025-11-11 10:00:00 +0000
+date: 2025-11-20 10:00:00 +0000
 categories: [linux-security]
 tags: [linux-security]
 author: Application Security Engineer
@@ -16,6 +16,7 @@ In Linux, the filesystem is not just a bucket for files; it is a configurable la
 When a disk partition is attached ("mounted") to the system, you can apply flags that restrict what can happen on that disk. This is a critical area for security reviews.
 
 **Key Hardening Flags:**
+
 | Flag | Effect | Security Value |
 | :--- | :--- | :--- |
 | **noexec** | Cannot run binaries/scripts on this partition. | **Critical for `/tmp` and `/dev/shm`**. Prevents attackers from downloading malware to temporary folders and executing it. |
@@ -29,7 +30,6 @@ When a disk partition is attached ("mounted") to the system, you can apply flags
 * **The Risk:** Attackers use it as a "staging area" to download exploits or compile tools because they are guaranteed write access.
 * **The Fix:** Mounting `/tmp` with `noexec` breaks this kill chain. The attacker can download the malware, but the kernel refuses to execute it.
 
----
 
 ## 2. File Attributes (Beyond `rwx`)
 Standard permissions (`chmod`) are stored in the inode. However, Linux has **Extended Attributes** that override standard permissions.
@@ -45,12 +45,12 @@ Even if you are Root (UID 0), you **cannot** delete, rename, or modify a file wi
 chattr +i /etc/shadow
 ```
 
-# View attributes (ls -l will NOT show this)
+**View attributes (ls -l will NOT show this)**
 lsattr /etc/shadow
-# Output: ----i--------- /etc/shadow
+
+**Output: ----i--------- /etc/shadow**
 
 ## 3. Logging & Visibility (Systemd Journal & Syslog)
----------------------------------------------------
 
 If a security event happens, where is it recorded?
 
@@ -83,7 +83,6 @@ If a security event happens, where is it recorded?
     
 
 ## 4. The Linux Audit Framework (auditd)
---------------------------------------
 
 While Syslog records "high-level" events (e.g., "User Bob logged in"), auditd records "low-level" kernel calls (e.g., "User Bob called the open() syscall on file /etc/secret").
 
@@ -109,7 +108,6 @@ Bash
 Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   # Search for events related to the "shadow_changes" key defined above  ausearch -k shadow_changes  # Search for events caused by a specific user ID  ausearch -ui 1000   `
 
 ## 5. Audit & Hunting Commands (The "Hunter" List)
-------------------------------------------------
 
 **1\. Check Mount Flags (Hardening):**Look for noexec on /tmp and /dev/shm.
 
@@ -142,7 +140,6 @@ Bash
 Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   auditctl -s   `
 
 ## 6. Review Checklist
---------------------
 
 1.  **Partitioning:** Are /tmp, /var, and /home on separate partitions? (Prevents log flooding from filling up the root disk and crashing the OS).
     
