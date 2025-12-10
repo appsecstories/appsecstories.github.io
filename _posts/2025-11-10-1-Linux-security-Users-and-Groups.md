@@ -72,6 +72,12 @@ When a binary with SUID is executed, it runs with the permissions of the **file 
 1.  **The Power (SUID):** Yes, `passwd` runs with **Effective UID 0**, so the process *can* write to `/etc/shadow`.
 2.  **The Gatekeeper (Internal Logic):** The binary code calls `getuid()` to check the **Real UID** (who actually typed the command). If you are not root, the code restricts you to changing *only* your own password.
 3.  **The Mechanism (Atomic Update):** It does not edit the file "directly" (in-place). It uses an atomic sequence: Lock -> Read -> Write Temp -> Rename.
+   Q. You asked if it updates the file "directly." In a strict engineering sense, no. It does not open the file, jump to line 5, and rewrite the bytes. That would be dangerous (if the power fails mid-write, the database is corrupted).
+Instead, passwd (and tools like useradd/vipw) uses an Atomic Update strategy:
+   * **Lock: It creates a lock file (usually /etc/.pwd.lock) to prevent two processes from editing at the same time.
+   * **Read & Copy: It reads /etc/shadow into memory.
+   * **Write Temp: It writes the new version of the data to a temporary file (often /etc/nshadow).
+   * **Rename: Once the write is confirmed successful, it uses the rename() system call to replace /etc/shadow with /etc/nshadow.
 * **Review Takeaway:** Look for custom SUID binaries that have the "Power" but lack the "Gatekeeper" logic.
 
 ### B. SGID (Set Group ID)
@@ -113,6 +119,7 @@ Users rarely log in as root directly; they use `sudo` to elevate privileges.
 Even if DAC permissions allow access (e.g., root reading a file), MAC provides an extra confinement layer.
 * **Tools:** SELinux (RedHat family), AppArmor (Debian/Ubuntu family).
 * **Concept:** Restricts what *processes* can do, even if running as root.
+* Example: Even if the Apache user is exploited, SELinux can prevent it from reading /etc/shadow or opening a reverse shell connection, regardless of file permissions.
 
 
 ## 7. GTFOBins & Privilege Escalation
