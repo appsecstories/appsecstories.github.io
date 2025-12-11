@@ -110,14 +110,9 @@ Used primarily on shared directories (like `/tmp`) to solve the "Shared Director
 ## 5. Privilege Delegation (sudo)
 Users rarely log in as root directly; they use `sudo` to elevate privileges.
 
-Example for entry in sudoers file:
-✔ alice runs normal commands as a standard user (default)
-✔ alice is allowed to run only `vim` as root using sudo
-   * Correct sudoers entry:
-   `alice ALL=(root) /usr/bin/vim`
-   * Optional passwordless version:
-   `alice ALL=(root) NOPASSWD: /usr/bin/vim`
-
+* Example for entry in sudoers file: alice runs normal commands as a standard user (default) & only `vim` as root using sudo
+   * Correct sudoers entry: `alice ALL=(root) /usr/bin/vim`
+   * Optional passwordless version: `alice ALL=(root) NOPASSWD: /usr/bin/vim`
 
 * **Configuration:** `/etc/sudoers`.
 * **Major Risk (NOPASSWD):** `bob ALL=(ALL) NOPASSWD: ALL` gives Bob root access without authentication.
