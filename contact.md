@@ -8,9 +8,9 @@ permalink: /contact/
 
 I'd love to hear from you! Whether you have questions about application security, want to collaborate on a project, or are interested in having me speak at your event, please don't hesitate to reach out.
 
+<!-- 
 ## Contact Information
 
-<!-- 
 ### 📧 Email
 **Primary**: [your-email@example.com](mailto:your-email@example.com)
 
