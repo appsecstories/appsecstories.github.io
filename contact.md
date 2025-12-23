@@ -10,10 +10,12 @@ I'd love to hear from you! Whether you have questions about application security
 
 ## Contact Information
 
+<!-- 
 ### 📧 Email
 **Primary**: [your-email@example.com](mailto:your-email@example.com)
 
 For speaking engagements and training inquiries, please use the subject line: **"Speaking/Training Inquiry"**
+-->
 
 ### 🌐 Social Media & Professional Networks
 
@@ -22,11 +24,13 @@ For speaking engagements and training inquiries, please use the subject line: **
     <strong>LinkedIn</strong><br>
     <a href="[https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/sunil-joshi-0562b456/)" target="_blank">linkedin profile</a>
   </div>
-  
+
+<!--
   <div class="contact-item">
     <strong>GitHub</strong><br>
     <a href="https://github.com/" target="_blank"></a>
   </div>
+-->
   
   <div class="contact-item">
     <strong>Twitter</strong><br>
@@ -76,10 +80,9 @@ I'm always interested in:
 - **Community Involvement**: Participating in security meetups and conferences
 - **Mentorship**: Helping aspiring security professionals
 
-<!-- 
+<!--
 ## Location
-
-I'm based in **[Your City, Country]** and available for:
+I'm based in **Bangalore** and available for:
 - Local speaking engagements
 - In-person training sessions
 - Remote consulting and assessments
