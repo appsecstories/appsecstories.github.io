@@ -4,7 +4,7 @@ title: About Me
 permalink: /about/
 ---
 
-I'm Sunil Joshi, an experienced **Application Security Engineer** with a passion for building secure applications and educating developers about cybersecurity best practices. With years of experience in the field, I specialize in identifying and mitigating security vulnerabilities throughout the Software Development Life Cycle (SDLC).
+I'm Sunil Joshi, an experienced **Application Security Engineer** with a passion for building secure applications and educating developers about cybersecurity best practices. With 10 years of experience in the field, I specialize in identifying and mitigating security vulnerabilities throughout the Software Development Life Cycle (SDLC).
 
 ## My Expertise
 
@@ -12,7 +12,6 @@ I'm Sunil Joshi, an experienced **Application Security Engineer** with a passion
 - Secure Code Review and Analysis
 - Static Application Security Testing (SAST)
 - Dynamic Application Security Testing (DAST)
-- Interactive Application Security Testing (IAST)
 - Security Architecture Review
 
 ### 🛡️ Vulnerability Assessment
@@ -20,47 +19,32 @@ I'm Sunil Joshi, an experienced **Application Security Engineer** with a passion
 - API Security Testing
 - Mobile Application Security Assessment
 - Cloud Security Configuration Review
-- Infrastructure Security Assessment
 
 ### 📋 Security Standards & Frameworks
 - OWASP Top 10 Implementation
 - NIST Cybersecurity Framework
-- ISO 27001 Security Standards
-- PCI DSS Compliance
-- SOC 2 Type II Assessments
+- CIS
 
 ### 💻 Technical Skills
-- **Programming Languages**: Python, Java, JavaScript, C#, Go
-- **Security Tools**: Burp Suite, OWASP ZAP, SonarQube, Checkmarx, Fortify
-- **Cloud Platforms**: AWS, Azure, Google Cloud Platform
-- **DevSecOps**: Jenkins, GitLab CI/CD, Docker Security, Kubernetes Security
-- **Databases**: PostgreSQL, MySQL, MongoDB, Redis
+- **Programming Languages**: Python, Java, JavaScript
+- **Security Tools (SAST/DAST/SCA)**: Burp Suite, Invicti, Snyk, Checkmarx
+- **Cloud Platforms**: AWS
+- **DevSecOps**: GitLab CI/CD, Docker Security, Kubernetes Security
+- **Fuzzing**: AFL++, Radamsa, BooFuzz
 
 ## Professional Experience
 
 ### Senior Application Security Engineer
-*Current Role*
-
-- Lead security assessments for enterprise web applications and APIs
+- Lead security assessments for enterprise web, mobile, APIs, containers and system security
 - Implement automated security testing in CI/CD pipelines
 - Conduct secure code reviews and provide remediation guidance
 - Develop security training programs for development teams
 - Collaborate with DevOps teams to implement security controls
 
-### Application Security Consultant
-*Previous Role*
-
-- Performed security assessments for clients across various industries
-- Developed custom security tools and automation scripts
-- Created security documentation and best practice guidelines
-- Mentored junior security professionals
-
 ## Certifications
 
-- 🎓 **Certified Ethical Hacker (CEH)**
-- 🎓 **Offensive Security Certified Professional (OSCP)**
-- 🎓 **AWS Certified Security - Specialty**
-- 🎓 **Certified Information Systems Security Professional (CISSP)**
+- 🎓 **GXPN**
+- 🎓 **GCPN**
 
 ## Why I Blog
 
@@ -76,14 +60,12 @@ I believe that **security is everyone's responsibility**, not just the security 
 
 I'm always interested in connecting with fellow security professionals, developers, and anyone passionate about application security. Feel free to reach out:
 
-- 📧 **Email**: [your-email@example.com](mailto:your-email@example.com)
-- 💼 **LinkedIn**: [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)
-- 🐙 **GitHub**: [Your GitHub Profile](https://github.com/yourusername)
-- 🐦 **Twitter**: [@YourTwitterHandle](https://twitter.com/yourhandle)
+- 💼 **LinkedIn**: [Your LinkedIn Profile](https://www.linkedin.com/in/sunil-joshi-0562b456/)
+- 🐦 **Twitter**: [@YourTwitterHandle](https://x.com/5unilj)
 
 ## Speaking & Training
 
-I regularly speak at security conferences and conduct training sessions on:
+I conduct training sessions on:
 
 - Secure Coding Practices
 - Application Security Testing
@@ -94,5 +76,3 @@ I regularly speak at security conferences and conduct training sessions on:
 If you're interested in having me speak at your event or conduct training for your team, please don't hesitate to get in touch.
 
 ---
-
-*"Security is not a product, but a process. It's not something you can buy, but something you have to do."* - Bruce Schneier
