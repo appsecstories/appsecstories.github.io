@@ -60,8 +60,8 @@ I believe that **security is everyone's responsibility**, not just the security 
 
 I'm always interested in connecting with fellow security professionals, developers, and anyone passionate about application security. Feel free to reach out:
 
-- 💼 **LinkedIn**: [Your LinkedIn Profile](https://www.linkedin.com/in/sunil-joshi-0562b456/)
-- 🐦 **Twitter**: [@YourTwitterHandle](https://x.com/5unilj)
+- 💼 **LinkedIn**: [LinkedIn Profile](https://www.linkedin.com/in/sunil-joshi-0562b456/)
+- 🐦 **Twitter**: [@5unilj](https://x.com/5unilj)
 
 ## Speaking & Training
 
