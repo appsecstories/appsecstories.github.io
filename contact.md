@@ -20,17 +20,17 @@ For speaking engagements and training inquiries, please use the subject line: **
 <div class="contact-links">
   <div class="contact-item">
     <strong>LinkedIn</strong><br>
-    <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a>
+    <a href="[https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/sunil-joshi-0562b456/)" target="_blank">linkedin profile</a>
   </div>
   
   <div class="contact-item">
     <strong>GitHub</strong><br>
-    <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a>
+    <a href="https://github.com/" target="_blank"></a>
   </div>
   
   <div class="contact-item">
     <strong>Twitter</strong><br>
-    <a href="https://twitter.com/yourhandle" target="_blank">@YourTwitterHandle</a>
+    <a href="https://x.com/5unilj" target="_blank">@5unilj</a>
   </div>
 </div>
 
@@ -55,16 +55,18 @@ For speaking engagements and training inquiries, please use the subject line: **
 - Compliance and regulatory guidance
 
 ### 🎤 Speaking Engagements
-I regularly speak at conferences, meetups, and corporate events on topics including:
+I regularly speak on topics including:
 - Application Security Best Practices
 - DevSecOps Implementation
 - Secure Code Review Techniques
 - Threat Modeling for Developers
 - OWASP Guidelines and Implementation
 
+<!-- 
 ## Response Time
 
 I typically respond to emails within **24-48 hours** during business days. For urgent security matters, please indicate the urgency in your subject line.
+-->
 
 ## Collaboration Opportunities
 
@@ -74,6 +76,7 @@ I'm always interested in:
 - **Community Involvement**: Participating in security meetups and conferences
 - **Mentorship**: Helping aspiring security professionals
 
+<!-- 
 ## Location
 
 I'm based in **[Your City, Country]** and available for:
@@ -81,6 +84,7 @@ I'm based in **[Your City, Country]** and available for:
 - In-person training sessions
 - Remote consulting and assessments
 - Virtual presentations and workshops
+-->
 
 ---
 
